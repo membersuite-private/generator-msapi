@@ -1,0 +1,2 @@
+helper.route('/<%= path %>')
+      .<%= lowercase(method_name) %>((args, context, callback) => <%= capitalize(endpoint_name) %>.<%= helper_name %>(args, context, callback));

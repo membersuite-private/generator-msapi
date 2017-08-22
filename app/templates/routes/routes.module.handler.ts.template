@@ -1,0 +1,4 @@
+router.route('/dev/<%= path %>')
+      .<%= lowercase(method_name) %>(function(req: Request, res: Response) {
+        LambdaHelper.executeLambda(<%= endpoint_name %>Handler, req, res);
+      });

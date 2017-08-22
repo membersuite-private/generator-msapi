@@ -1,0 +1,4 @@
+export interface <%= data_interface_name %> {
+  <% data_fields.forEach(function(field) { %><%= field %>
+  <% }); %>
+}

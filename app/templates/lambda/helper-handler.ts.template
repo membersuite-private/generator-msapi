@@ -1,0 +1,10 @@
+<%= lowercase(method_name) %><%= capitalize(endpoint_name) %>: (args, context, callback) => {
+    // TODO: Enter MySQL
+    let msql = ``;
+    // TODO: Enter REST request URL
+    // TODO: Create a data type to return and reference it instead of todoReturnDataType
+    RequestHelper.request(`${Environment.api_base_url}/rest/api/endpoint`, args)
+      .then(
+      (response: IResponse) => callback(null, new todoReturnDataType(response.body)),
+      (err: IResponse) => callback(JSON.stringify(err), null));
+  },

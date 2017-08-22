@@ -1,0 +1,1 @@
+import { handler as <%= endpoint_name %>Handler } from  '../lambdas/<%= module_name %>/<%= endpoint_name %>/<%= endpoint_name %>';

@@ -1,0 +1,28 @@
+import { IResponse, RequestHelper } from '../../../helpers/helper.request';
+import { LambdaHelper } from '../../../helpers/helper.lambda';
+import { Environment } from '../../../environments/environment';
+import { <%= capitalize(endpoint_name) %>List } from './<%= endpoint_name %>.model';
+
+const <%= capitalize(endpoint_name) %>s = {
+  handler: (args, context, callback) => {
+    const helper = new LambdaHelper(args, context, callback);
+    
+    helper.route('/<%= path %>')
+      .<%= lowercase(method_name) %>((args, context, callback) => <%= capitalize(endpoint_name) %>s.<%= helper_name %>(args, context, callback));
+  },
+
+  <%= lowercase(method_name) %><%= capitalize(endpoint_name) %>: (args, context, callback) => {
+    // TODO: Enter MSQL
+    let msql = ``;
+    // TODO: Enter REST request URL
+    RequestHelper.request(`${Environment.api_base_url}/rest/api/endpoint`, args)
+      .then(
+      (response: IResponse) => callback(null, new <%= capitalize(endpoint_name) %>List(response.body)),
+      (err: IResponse) => callback(JSON.stringify(err), null));
+  }
+  
+}
+
+export let handler = <%= capitalize(endpoint_name) %>s.handler;
+
+export default <%= capitalize(endpoint_name) %>s;

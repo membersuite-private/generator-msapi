@@ -1,0 +1,7 @@
+  <%= endpoint_name %>:
+    handler: dist/lambdas/<%= module_name %>/<%= endpoint_name %>/<%= endpoint_name %>.handler
+    events:
+      - http:
+          <<: *httpDefaults
+          path: <%= path %>
+          method: <%= method_name %>

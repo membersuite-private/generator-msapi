@@ -1,0 +1,7 @@
+// TODO: Add example data
+export const <%= capitalize(endpoint_name) %>s: any[] = [
+  {
+    
+  }
+  
+];

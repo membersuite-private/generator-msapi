@@ -1,0 +1,1 @@
+import { <%= capitalize(endpoint_name) %>s } from '../lambdas/<%= module_name %>/<%= endpoint_name %>/<%= endpoint_name %>.data';

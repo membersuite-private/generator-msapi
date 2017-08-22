@@ -1,0 +1,30 @@
+import '../../../helpers/helper.polyfills';
+
+import { ObjectHelper } from '../../../helpers/helper.object';
+import { Data } from '../../../helpers/helper.data';
+import { <%= getDataTypeFromPath(data_type_name, module_name) %> } from './<%= endpoint_name %>.d';
+
+export class <%= capitalize(endpoint_name) %>List {
+  <%= endpoint_name %>List: <%= getDataTypeFromPath(data_type_name, module_name) %>[];
+
+  constructor(<%= endpoint_name %>?: any) {
+    if (<%= endpoint_name %>) {
+      if (ObjectHelper.isArray(<%= endpoint_name %>)) {
+        this.<%= endpoint_name %>List = <%= endpoint_name %>.map(d => ObjectHelper.formatModelKeys(d));
+      }
+      else {
+        this.<%= endpoint_name %>List = [ObjectHelper.formatModelKeys(<%= endpoint_name %>)];
+      }
+    }
+  }
+}
+
+export const <%= capitalize(endpoint_name) %> = {
+  <%= lowercase(method_name) %>: (args) => {
+    return new Promise(function(resolve, reject) {
+      const data = Data.<%= endpoint_name %>s;
+      resolve({ statusCode: 200, body: data });
+    });
+  }
+};
+
