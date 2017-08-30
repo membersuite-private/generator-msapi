@@ -1,6 +1,5 @@
 var Generator = require('yeoman-generator');
 var File = require('fs');
-var Promise = require('promise');
 var inquirer = require('inquirer');
 var YAML = require('yamljs');
 var ejs = require('ejs');
