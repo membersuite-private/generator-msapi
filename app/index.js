@@ -179,7 +179,11 @@ module.exports = class extends Generator {
   }
 
   _emit_route_helper_into_route_helpers() {
-    var existing_route_helpers_path = `./src/routes/routes.${this.choices.module_name}.ts`;
+    if (this.choices.module_name == "events")
+      var existing_route_helpers_path = `./src/routes/routes.event.ts`;
+    else
+      var existing_route_helpers_path = `./src/routes/routes.${this.choices.module_name}.ts`;
+
     var existing_route_helpers_contents = File.readFileSync(existing_route_helpers_path, 'utf8');
     var raw_route_import_template = File.readFileSync(pathToModule + '/templates/routes/routes.module.import.ts.template', 'utf8');
     var raw_route_handler_template = File.readFileSync(pathToModule + '/templates/routes/routes.module.handler.ts.template', 'utf8');
@@ -194,7 +198,7 @@ module.exports = class extends Generator {
         '\n' + rendered_import +
         existing_route_helpers_contents.substring(final_import_index + final_import_match.length);
 
-    var route_match = existing_route_helpers_contents_with_import.match(/public static init\(\)\: Router \{\n/);
+    var route_match = existing_route_helpers_contents_with_import.match(/public static init\(\)\: Router \{\r?\n/);
     var route_match_index = route_match.index;
 
     var existing_route_helpers_contents_with_import_and_definition = existing_route_helpers_contents_with_import.substring(0, route_match_index + route_match[0].length) +
