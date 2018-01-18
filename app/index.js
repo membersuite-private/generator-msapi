@@ -194,7 +194,7 @@ module.exports = class extends Generator {
         '\n' + rendered_import +
         existing_route_helpers_contents.substring(final_import_index + final_import_match.length);
 
-    var route_match = existing_route_helpers_contents_with_import.match(/public static init\(\)\: Router \{\n/);
+    var route_match = existing_route_helpers_contents_with_import.match(/public static init\(\)\: Router \{$/);
     var route_match_index = route_match.index;
 
     var existing_route_helpers_contents_with_import_and_definition = existing_route_helpers_contents_with_import.substring(0, route_match_index + route_match[0].length) +
